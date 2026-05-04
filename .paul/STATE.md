@@ -48,6 +48,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 | ExceptionQueue taxonomy as constants | Phase 1 | 6 named types: MATCH_CONFIDENCE_LOW, PARSE_FAILED, PRICE_ANOMALY, JSON_INVALID, SITE_BLOCKED, SKU_REF_ERROR |
 | 5 new intelligence metrics in Phase 5 | Phase 5 | OOS Rate, Loyalty Gap, Band Width, Promo Freq, New SKU Detection — all derived from existing scrape data |
 | Post-MVP innovation backlog documented | Pre-build | 5 innovations: Promo Calendar, Brand Heatmap, Shelf Presence, Price Velocity, Normalizer Rule Table |
+| Handoff index system spec written | Framework | HANDOFF-INDEX.md + updated pause/resume workflows + /paul:handoffs command — implement on Mac before APPLY |
 
 ### Deferred Issues
 None.
@@ -55,16 +56,17 @@ None.
 ## Session Continuity
 
 Last session: 2026-05-04
-Stopped at: Repo fully restructured as monorepo — all framework skills committed, machine-agnostic setup created, pushed to AI-TREV/Competitor-Analyzer
-Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-repo-setup.md
+Stopped at: Token limit — handoff index system spec written to .paul/specs/handoff-index-system.md; no app code written
+Next action: Implement .paul/specs/handoff-index-system.md (Mac), then /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-framework-spec.md
 Working directory: Competitor Analyzer/ (workspace root)
 Resume context:
+- DO framework work first: implement .paul/specs/handoff-index-system.md (5 files, ~1 hour)
+- THEN run /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
 - Plan 01-01: 8 tables, 5 indexes, all constraints — 3 tasks ready to execute
 - No application code exists yet — clean slate
-- Repo is cloneable: collaborator on Mac can clone and contribute (see handoff for setup steps)
-- .mcp.json and .claude/settings.local.json are gitignored — each machine needs its own copy from templates
+- Clone: git clone https://github.com/AI-TREV/Competitor-Analyzer.git "Competitor Analyzer"
 
 ---
 *STATE.md — Updated after every significant action*

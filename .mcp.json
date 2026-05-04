@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "base-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "./.base/base-mcp/index.js"
+      ]
+    },
+    "lean-ctx": {
+      "type": "stdio",
+      "command": "C:/Users/trevo/.claude/plugins/lean-ctx/packages/lean-ctx-bin/bin/lean-ctx.exe",
+      "args": ["--mcp"]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "workspace": "Competitor Analyzer",
+  "last_modified": "2026-05-04",
+  "categories": [
+    {
+      "name": "Applications",
+      "description": "Graduated app builds managed by PAUL"
+    }
+  ],
+  "items": [
+    {
+      "id": "PRJ-001",
+      "title": "Competitor Scraper",
+      "status": "active",
+      "priority": "high",
+      "category": "Applications",
+      "description": "Automated competitor egg price scraping pipeline for Auckland supermarkets (Woolworths + New World). Firecrawl + Playwright → SQLite → Market Opportunities Reports.",
+      "path": "apps/competitor-scraper/",
+      "engine": "paul",
+      "phase": "Phase 1 — Foundation",
+      "created": "2026-05-04",
+      "updated": "2026-05-04"
+    }
+  ],
+  "archived": []
+}

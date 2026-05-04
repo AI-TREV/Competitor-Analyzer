@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "last_modified": "2026-05-04",
+  "config": {
+    "devmode": false,
+    "post_compact_gate": true,
+    "global_exclude": ["just chatting", "quick question", "what do you think about"]
+  },
+  "domains": {
+    "paul-workflow": {
+      "state": "active",
+      "always_on": true,
+      "recall": [],
+      "exclude": [],
+      "rules": [
+        {
+          "id": 0,
+          "text": "PAUL state file is at .paul/STATE.md. Read it before suggesting any work. Check loop position before touching code.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 1,
+          "text": "Loop order is PLAN → APPLY → UNIFY. Never suggest writing code outside /paul:apply. Never skip UNIFY after APPLY.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 2,
+          "text": "Phase plan files live at .paul/phases/{phase-id}/{plan-id}-PLAN.md. Never edit these manually — PAUL manages them.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 3,
+          "text": "Next approved action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md. Plan is finalized — do not re-plan unless user directs.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 4,
+          "text": "Competitor scraper code lives in apps/competitor-scraper/. All APPLY file operations target that subdirectory. Root .paul/ is the workspace PAUL home.",
+          "added": "2026-05-04",
+          "source": "manual"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "paul-001",
+          "decision": "8-table schema (not 6 from original spec)",
+          "rationale": "Forensic review found internal_sku and internal_price_history missing — fatal to Phase 5 reporting",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["schema", "tables", "internal_sku", "price_history"],
+          "status": "active"
+        },
+        {
+          "id": "paul-002",
+          "decision": "SEED type: application",
+          "rationale": "Shaped architecture, rigor, and phase structure from project inception",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["seed", "init", "project type"],
+          "status": "active"
+        },
+        {
+          "id": "paul-003",
+          "decision": "ExceptionQueue taxonomy defined as 6 named constants",
+          "rationale": "MATCH_CONFIDENCE_LOW | PARSE_FAILED | PRICE_ANOMALY | JSON_INVALID | SITE_BLOCKED | SKU_REF_ERROR — prevents free-text exception types from becoming unmaintainable",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["exception", "queue", "taxonomy", "error type"],
+          "status": "active"
+        },
+        {
+          "id": "paul-004",
+          "decision": "5 intelligence metrics added to Phase 5 scope",
+          "rationale": "OOS Rate, Loyalty Gap, Band Width, Promo Freq, New SKU Detection — all derivable from existing scrape data, no new tables needed",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["metrics", "intelligence", "reporting", "phase 5"],
+          "status": "active"
+        }
+      ]
+    },
+    "scraping": {
+      "state": "active",
+      "always_on": false,
+      "recall": ["scrape", "scraper", "firecrawl", "playwright", "competitor", "woolworths", "new world", "price observation", "observation", "product", "store url", "scrape run"],
+      "exclude": [],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Scraping scope: Woolworths NZ and New World NZ only. Auckland region. Free range eggs only. Never expand beyond this without explicit user approval.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 1,
+          "text": "Public data only. No login credentials, no CAPTCHA bypass, no anti-bot circumvention. If a page requires auth, stop and report — never attempt workarounds.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 2,
+          "text": "Primary scraper: @mendable/firecrawl-js. Fallback: Playwright (for JS-heavy pages + screenshot evidence). Never invert this order.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 3,
+          "text": "Every observation must persist source_url and raw_json_snapshot. These are the audit trail — never omit them.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 4,
+          "text": "screenshot_path must be relative only: \"{run_id}/{filename}.png\". Never store absolute paths. CHECK constraint in schema enforces this — trust it.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 5,
+          "text": "scrape_run_id must be crypto.randomUUID(). Never use sequential integers or timestamps as run IDs.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 6,
+          "text": "observed_at must be the actual HTTP response timestamp from the scraper. No DEFAULT in SQL — scraper must supply this value explicitly.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 7,
+          "text": "store_url values are intentionally null until Phase 2 research confirms them. Do not hardcode store URLs during Phase 1.",
+          "added": "2026-05-04",
+          "source": "manual"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "scraping-001",
+          "decision": "Firecrawl as primary scraper, Playwright as fallback",
+          "rationale": "Firecrawl handles JS rendering and returns structured JSON. Playwright needed for screenshot evidence and pages Firecrawl can't parse.",
+          "date": "2026-05-04",
+          "source": "manual",
+          "recall": ["firecrawl", "playwright", "scraper choice"],
+          "status": "active"
+        }
+      ]
+    },
+    "database": {
+      "state": "active",
+      "always_on": false,
+      "recall": ["sqlite", "database", "migration", "schema", "sql", "better-sqlite3", "db", "table", "index", "constraint", "foreign key", "pragma"],
+      "exclude": [],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Always PRAGMA foreign_keys = ON and journal_mode = WAL. These are non-negotiable for data integrity and performance.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 1,
+          "text": "Resolve DATABASE_PATH to absolute at startup: path.resolve(process.env.DATABASE_PATH ?? fallback). Never use cwd-relative paths at call time.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 2,
+          "text": "All migrations must be idempotent: CREATE TABLE IF NOT EXISTS, CREATE INDEX IF NOT EXISTS. Running db:setup twice must produce zero errors.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 3,
+          "text": "better-sqlite3 is synchronous. Don't wrap DB calls in unnecessary Promise chains — lean into the sync API.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 4,
+          "text": "Schema has 8 tables in FK-dependency order: competitor → competitor_store → internal_sku → internal_price_history → competitor_product → scrape_run → competitor_price_observation → exception_queue.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 5,
+          "text": "Zod validates scrape output before any DB write. If Zod rejects, write to exception_queue — never write partial/unvalidated data to observation tables.",
+          "added": "2026-05-04",
+          "source": "manual"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "db-001",
+          "decision": "SQLite for MVP, PostgreSQL deferred to production",
+          "rationale": "Zero-config, single-file, sufficient for weekly manual operator runs. Adds complexity with no benefit until scale demands it.",
+          "date": "2026-05-04",
+          "source": "manual",
+          "recall": ["sqlite", "postgresql", "database choice"],
+          "status": "active"
+        },
+        {
+          "id": "db-002",
+          "decision": "internal_price_history table added (was not in original spec)",
+          "rationale": "Single current_price on internal_sku would lose history when operator updates pricing. Historical gap analysis in Phase 5 requires time-series price data.",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["price history", "internal price", "gap analysis"],
+          "status": "active"
+        }
+      ]
+    },
+    "reporting": {
+      "state": "active",
+      "always_on": false,
+      "recall": ["report", "excel", "pdf", "dashboard", "export", "market opportunities", "price gap", "chart", "vite", "ui", "phase 5", "phase 6"],
+      "exclude": [],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Phase 5 reporting requires operator to populate internal_sku.current_price before first report run. Document this dependency clearly — do not assume it's populated.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 1,
+          "text": "Exports: ExcelJS for .xlsx output, @react-pdf/renderer for PDF. Do not introduce alternative libraries.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 2,
+          "text": "Dashboard (Phase 6): Vite + vanilla JS. 3 screens only: dashboard, competitor prices, reports. No heavy framework — keep it lightweight.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 3,
+          "text": "All report generation must handle zero observations gracefully. Never throw on empty data — return empty-state output with a clear message.",
+          "added": "2026-05-04",
+          "source": "manual"
+        },
+        {
+          "id": 4,
+          "text": "Email distribution via Resend. Implement allowlist + dry-run flag before enabling (deferred to Plan 05-02).",
+          "added": "2026-05-04",
+          "source": "manual"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "reporting-001",
+          "decision": "5 intelligence metrics added to Phase 5 scope",
+          "rationale": "OOS Rate, Loyalty Gap, Band Width, Promo Frequency, New SKU Detection — all derived from existing scrape data, require no new tables",
+          "date": "2026-05-04",
+          "source": "session",
+          "recall": ["oos rate", "loyalty gap", "band width", "promo frequency", "new sku", "intelligence metrics"],
+          "status": "active"
+        }
+      ]
+    }
+  },
+  "staging": []
+}

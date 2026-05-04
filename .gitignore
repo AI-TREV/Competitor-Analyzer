@@ -1,0 +1,9 @@
+node_modules/
+/test-results/
+/browser-data/
+
+# Nested repos / external tools (re-install on new machine)
+Egg-Scraper/
+antigravity-plus/
+skillsmith/
+chrome/

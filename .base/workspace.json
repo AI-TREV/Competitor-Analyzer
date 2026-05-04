@@ -1,0 +1,193 @@
+{
+  "workspace": "Competitor Analyzer",
+  "created": "2026-05-03",
+  "groom_cadence": "weekly",
+  "groom_day": "friday",
+  "areas": {
+    "working-memory": {
+      "type": "working-memory",
+      "description": "BASE data surfaces — active work and project tracking",
+      "paths": [
+        ".base/data/projects.json"
+      ],
+      "groom": "weekly",
+      "audit": {
+        "strategy": "staleness",
+        "config": {
+          "threshold_days": 7
+        }
+      }
+    },
+    "antigravity-plus": {
+      "type": "directory",
+      "description": "VS Code extension — main product",
+      "paths": [
+        "antigravity-plus/"
+      ],
+      "groom": "monthly",
+      "audit": {
+        "strategy": "classify",
+        "config": {
+          "states": ["active", "archive", "delete"],
+          "archive_path": "antigravity-plus/_archive/"
+        }
+      }
+    },
+    "tests": {
+      "type": "directory",
+      "description": "Root-level test scripts and shell examples",
+      "paths": [
+        "tests/"
+      ],
+      "groom": "weekly",
+      "audit": {
+        "strategy": "staleness",
+        "config": {
+          "threshold_days": 14
+        }
+      }
+    },
+    "agent-config": {
+      "type": "config-cross-ref",
+      "description": "Browser agent and Node dependencies config",
+      "paths": [
+        "agent-browser.json",
+        "package.json"
+      ],
+      "groom": "monthly",
+      "audit": {
+        "strategy": "cross-reference",
+        "config": {}
+      }
+    },
+    "system-layer": {
+      "type": "system-layer",
+      "description": "BASE infrastructure, MCP servers, Claude hooks",
+      "paths": [
+        ".base/",
+        ".claude/",
+        ".mcp.json"
+      ],
+      "groom": "monthly",
+      "audit": {
+        "strategy": "dead-code",
+        "config": {
+          "reference_check": true
+        }
+      }
+    }
+  },
+  "carl_hygiene": {
+    "proactive": true,
+    "cadence": "monthly",
+    "staleness_threshold_days": 60,
+    "max_rules_per_domain": 15,
+    "last_run": null
+  },
+  "surfaces": {
+    "projects": {
+      "file": "data/projects.json",
+      "description": "Active work and backlog items",
+      "hook": true,
+      "silent": false,
+      "schema": {
+        "id_prefix": "PRJ",
+        "required_fields": ["id", "title", "status"],
+        "priority_levels": ["critical", "high", "medium", "low"],
+        "status_values": ["active", "paused", "done", "archived"]
+      }
+    },
+    "entities": {
+      "file": "data/entities.json",
+      "description": "People, organizations, systems",
+      "hook": false,
+      "silent": true,
+      "schema": {
+        "id_prefix": "ENT",
+        "required_fields": ["id", "name", "type"],
+        "priority_levels": [],
+        "status_values": ["active", "inactive"]
+      }
+    },
+    "state": {
+      "file": "data/state.json",
+      "description": "Workspace health, drift score, groom tracking",
+      "hook": false,
+      "silent": true,
+      "schema": {
+        "id_prefix": "ST",
+        "required_fields": [],
+        "priority_levels": [],
+        "status_values": []
+      }
+    },
+    "psmm": {
+      "file": "data/psmm.json",
+      "description": "Per-session meta memory",
+      "hook": true,
+      "silent": true,
+      "schema": {
+        "id_prefix": "PSM",
+        "required_fields": ["session_id"],
+        "priority_levels": [],
+        "status_values": []
+      }
+    },
+    "staging": {
+      "file": "data/staging.json",
+      "description": "Proposed changes staging area",
+      "hook": false,
+      "silent": true,
+      "schema": {
+        "id_prefix": "STG",
+        "required_fields": ["id", "type", "content"],
+        "priority_levels": [],
+        "status_values": ["pending", "approved", "rejected"]
+      }
+    }
+  },
+  "satellites": {
+    "antigravity-plus": {
+      "path": "antigravity-plus/",
+      "engine": "none",
+      "state": null,
+      "registered": "2026-05-04",
+      "groom_check": true,
+      "last_activity": null,
+      "phase_name": null,
+      "phase_number": null,
+      "phase_status": null,
+      "loop_position": "IDLE",
+      "handoff": false,
+      "last_plan_completed_at": null
+    },
+    "skillsmith": {
+      "path": "skillsmith/",
+      "engine": "paul",
+      "state": "skillsmith/.paul/STATE.md",
+      "registered": "2026-05-04",
+      "groom_check": true,
+      "last_activity": "2026-05-04",
+      "phase_name": "Complete",
+      "phase_number": 6,
+      "phase_status": "done",
+      "loop_position": "IDLE",
+      "handoff": false,
+      "last_plan_completed_at": "2026-05-04"
+    },
+    "competitor-scraper": {
+      "path": "apps/competitor-scraper/",
+      "engine": "paul",
+      "state": ".paul/STATE.md",
+      "registered": "2026-05-04",
+      "groom_check": true,
+      "last_activity": "2026-05-04",
+      "phase_name": "Foundation — Data Model & Configuration",
+      "phase_number": 1,
+      "phase_status": "not-started",
+      "loop_position": "PLAN",
+      "handoff": false,
+      "last_plan_completed_at": null
+    }
+  }
+}

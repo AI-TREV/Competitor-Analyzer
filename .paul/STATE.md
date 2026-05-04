@@ -11,9 +11,9 @@ See: .paul/PROJECT.md (updated 2026-05-04)
 
 Milestone: v0.1 MVP — In Progress
 Phase: 1 of 6 (Foundation — Data Model & Configuration) — Planning
-Plan: 01-01 updated with all forensic fixes, ready for APPLY
-Status: PLAN finalized, ready for APPLY
-Last activity: 2026-05-04 — Pre-execution forensic review complete; Plan 01-01 updated (8 tables, 5 indexes, all constraints); ROADMAP, PLANNING.md, INTEGRATION.md updated
+Plan: 01-01 audited + updated, ready for APPLY
+Status: PLAN finalized + enterprise-audited, ready for APPLY
+Last activity: 2026-05-04 — Enterprise audit complete on 01-01-PLAN.md. Applied 4 must-have + 3 strongly-recommended upgrades. Verdict: conditionally acceptable → approved. AUDIT.md written.
 
 Progress:
 - Milestone: [░░░░░░░░░░] 0%
@@ -49,6 +49,10 @@ PLAN ──▶ APPLY ──▶ UNIFY
 | 5 new intelligence metrics in Phase 5 | Phase 5 | OOS Rate, Loyalty Gap, Band Width, Promo Freq, New SKU Detection — all derived from existing scrape data |
 | Post-MVP innovation backlog documented | Pre-build | 5 innovations: Promo Calendar, Brand Heatmap, Shelf Presence, Price Velocity, Normalizer Rule Table |
 | Handoff index system spec written | Framework | HANDOFF-INDEX.md + updated pause/resume workflows + /paul:handoffs command — implement on Mac before APPLY |
+| 2026-05-04: Enterprise audit on 01-01-PLAN.md | Phase 1 | Applied 4 must-have + 3 strongly-recommended upgrades. Verdict: conditionally acceptable. 5 items deferred. Plan approved for APPLY. |
+| store_id NOT NULL on competitor_price_observation | Phase 1 | Nullable store_id silently bypasses UNIQUE constraint in SQLite (NULL≠NULL) — must always be NOT NULL |
+| Handoff files never deleted | Framework | HANDOFF-INDEX.md is the control surface; physical files preserved for full audit trail |
+| "type": "module" non-negotiable in scraper package.json | Phase 1 | ES module syntax throughout database.js + seed.js; omission is a hard SyntaxError build failure |
 
 ### Deferred Issues
 None.
@@ -56,17 +60,16 @@ None.
 ## Session Continuity
 
 Last session: 2026-05-04
-Stopped at: Token limit — handoff index system spec written to .paul/specs/handoff-index-system.md; no app code written
-Next action: Implement .paul/specs/handoff-index-system.md (Mac), then /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-framework-spec.md
-Working directory: Competitor Analyzer/ (workspace root)
+Stopped at: Enterprise audit complete, plan approved, session paused
+Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-mac-setup-audit.md
+Working directory: /Users/admin/Competitor-Analyzer (workspace root, no space in path)
 Resume context:
-- DO framework work first: implement .paul/specs/handoff-index-system.md (5 files, ~1 hour)
-- THEN run /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
+- Plan 01-01 is audited and approved — 7 changes applied, safe to APPLY
+- Task 1 first step: CREATE apps/competitor-scraper/package.json (does not exist yet), then npm install
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
-- Plan 01-01: 8 tables, 5 indexes, all constraints — 3 tasks ready to execute
 - No application code exists yet — clean slate
-- Clone: git clone https://github.com/AI-TREV/Competitor-Analyzer.git "Competitor Analyzer"
+- better-sqlite3 is a native addon — requires Xcode CLT on Mac for npm install
 
 ---
 *STATE.md — Updated after every significant action*

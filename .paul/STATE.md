@@ -55,16 +55,16 @@ None.
 ## Session Continuity
 
 Last session: 2026-05-04
-Stopped at: Workspace orchestration complete — CARL/lean-ctx/RTK all fixed; PAUL relocated to root; git deletions in apps/competitor-scraper/.paul/ unstaged
+Stopped at: Repo fully restructured as monorepo — all framework skills committed, machine-agnostic setup created, pushed to AI-TREV/Competitor-Analyzer
 Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-orchestration.md
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-repo-setup.md
 Working directory: Competitor Analyzer/ (workspace root)
 Resume context:
-- Commit apps/competitor-scraper .paul/ deletions BEFORE running apply (git add -A && git commit in apps/competitor-scraper/)
-- Restart Claude Code session to activate RTK full-path hook + lean-ctx MCP
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
 - Plan 01-01: 8 tables, 5 indexes, all constraints — 3 tasks ready to execute
 - No application code exists yet — clean slate
+- Repo is cloneable: collaborator on Mac can clone and contribute (see handoff for setup steps)
+- .mcp.json and .claude/settings.local.json are gitignored — each machine needs its own copy from templates
 
 ---
 *STATE.md — Updated after every significant action*

@@ -11,6 +11,7 @@ _Updated automatically by /paul:pause and /paul:resume_
 | 2026-05-04 | HANDOFF-2026-05-04-repo-setup.md | Monorepo restructured, framework committed, no app code | None |
 | 2026-05-04 | HANDOFF-2026-05-04-mac-setup-audit.md | Mac setup complete, handoff index system implemented, 01-01 audited and approved | store_id NOT NULL, Handoff files never deleted, type:module non-negotiable |
 | 2026-05-04 | HANDOFF-2026-05-04-env-workspace-fix.md | Workspace root fixed (no space in path), git pull synced Track A, statusline installed | None |
+| 2026-05-04 | HANDOFF-2026-05-04-tooling-setup.md | Statusline updated, caveman + token-optimizer + lean-ctx + rtk wired into workspace | None |
 ## Archived
 
 | Date | File | Archived | Summary |

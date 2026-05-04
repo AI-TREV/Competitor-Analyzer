@@ -1,0 +1,193 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/caveman-activate.js\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" ensure-health || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" quality-cache --force --quiet || true"
+          }
+        ]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-restore || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-restore --new-session-only || true"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/caveman-mode-tracker.js\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" quality-cache --warn --quiet || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" --quiet || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" checkpoint-trigger --milestone pre-fanout --quiet || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read|Glob|Grep|Agent|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/archive_result.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/archive_result.py\" --quiet || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" --invalidate --quiet || true"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'COMPACTION GUIDANCE: Preserve code changes, key decisions, and file paths. Discard intermediate attempts, explanations, and verbose tool output.'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-capture --trigger auto --quiet || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" --clear --quiet || true"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" quality-cache --force --quiet || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-capture --trigger stop --quiet || true"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-capture --trigger stop-failure --quiet || true"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" collect --quiet && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" dashboard --quiet || true",
+            "async": true,
+            "timeout": 30000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/measure.py\" compact-capture --trigger end --quiet || true",
+            "async": true,
+            "timeout": 30000
+          }
+        ]
+      }
+    ],
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" && python3 \"$HOME/.claude/skills/token-optimizer/scripts/read_cache.py\" --clear --quiet || true"
+          }
+        ]
+      }
+    ]
+  }
+}

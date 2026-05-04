@@ -53,24 +53,26 @@ PLAN ──▶ APPLY ──▶ UNIFY
 | store_id NOT NULL on competitor_price_observation | Phase 1 | Nullable store_id silently bypasses UNIQUE constraint in SQLite (NULL≠NULL) — must always be NOT NULL |
 | Handoff files never deleted | Framework | HANDOFF-INDEX.md is the control surface; physical files preserved for full audit trail |
 | "type": "module" non-negotiable in scraper package.json | Phase 1 | ES module syntax throughout database.js + seed.js; omission is a hard SyntaxError build failure |
+| CLAUDE.md is constitution only | Framework | Operational rules belong in CARL — CLAUDE.md must not inline volatile state, scraping rules, or DB constraints |
+| skillsmith installed globally | Framework | Not workspace-local; useful across all projects, no directory in this workspace |
 
 ### Deferred Issues
 None.
 
 ## Session Continuity
 
-Last session: 2026-05-04 — tooling setup session
-Stopped at: All workspace tools wired up (.claude/settings.json created), no app code written
+Last session: 2026-05-04 — CLAUDE.md audit session
+Stopped at: CLAUDE.md audited, CLAUDE.base.md written (75 lines), no app code written
 Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-tooling-setup.md
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-claude-audit.md
 Working directory: /Users/admin/Competitor-Analyzer (confirmed correct — no space in path)
 Resume context:
-- Plan 01-01 is audited and approved — 7 changes applied, safe to APPLY
-- Task 1 first step: CREATE apps/competitor-scraper/package.json (does not exist yet), then npm install
+- Plan 01-01 is audited and approved — safe to APPLY, clean slate for app code
+- CLAUDE.base.md ready to adopt (optional): mv CLAUDE.base.md CLAUDE.md (does NOT block APPLY)
+- Task 1 first step: CREATE apps/competitor-scraper/package.json ("type": "module" non-negotiable), then npm install
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
-- No application code exists yet — clean slate
 - better-sqlite3 is a native addon — requires Xcode CLT on Mac for npm install
-- Workspace tools active: caveman, token-optimizer, lean-ctx (MCP), rtk (CLAUDE.md)
+- skillsmith now installed globally
 
 ---
 *STATE.md — Updated after every significant action*

@@ -13,6 +13,7 @@ _Updated automatically by /paul:pause and /paul:resume_
 | 2026-05-04 | HANDOFF-2026-05-04-env-workspace-fix.md | Workspace root fixed (no space in path), git pull synced Track A, statusline installed | None |
 | 2026-05-04 | HANDOFF-2026-05-04-tooling-setup.md | Statusline updated, caveman + token-optimizer + lean-ctx + rtk wired into workspace | None |
 | 2026-05-04 | HANDOFF-2026-05-04-claude-audit.md | CLAUDE.md audited, CLAUDE.base.md written (75 lines), skillsmith confirmed global | CLAUDE.md is constitution only, skillsmith installed globally |
+| 2026-05-04 | HANDOFF-2026-05-04-session-close.md | CLAUDE.md adopted, repo pushed to GitHub, ready for APPLY | None |
 ## Archived
 
 | Date | File | Archived | Summary |

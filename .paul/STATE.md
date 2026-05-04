@@ -61,18 +61,18 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-05-04 — CLAUDE.md audit session
-Stopped at: CLAUDE.md audited, CLAUDE.base.md written (75 lines), no app code written
+Last session: 2026-05-04 — session close (housekeeping + push)
+Stopped at: All housekeeping done, repo pushed to GitHub, clean slate for APPLY
 Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-claude-audit.md
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-session-close.md
 Working directory: /Users/admin/Competitor-Analyzer (confirmed correct — no space in path)
 Resume context:
-- Plan 01-01 is audited and approved — safe to APPLY, clean slate for app code
-- CLAUDE.base.md ready to adopt (optional): mv CLAUDE.base.md CLAUDE.md (does NOT block APPLY)
+- Plan 01-01 is audited and approved — clean slate, ready for APPLY
+- CLAUDE.md adopted (75 lines, clean), repo fully pushed to AI-TREV/Competitor-Analyzer
 - Task 1 first step: CREATE apps/competitor-scraper/package.json ("type": "module" non-negotiable), then npm install
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
-- better-sqlite3 is a native addon — requires Xcode CLT on Mac for npm install
-- skillsmith now installed globally
+- better-sqlite3 is a native addon — requires Xcode CLT on Mac (already installed)
+- GitHub push auth: Clarity-EngineAI has collaborator access — push works
 
 ---
 *STATE.md — Updated after every significant action*

@@ -59,17 +59,18 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-05-04
-Stopped at: Enterprise audit complete, plan approved, session paused
+Last session: 2026-05-04 — env/workspace fix session
+Stopped at: Workspace root fixed, git pull synced, statusline installed — no app code written
 Next action: /paul:apply .paul/phases/01-foundation/01-01-PLAN.md
-Resume file: .paul/handoffs/HANDOFF-2026-05-04-mac-setup-audit.md
-Working directory: /Users/admin/Competitor-Analyzer (workspace root, no space in path)
+Resume file: .paul/handoffs/HANDOFF-2026-05-04-env-workspace-fix.md
+Working directory: /Users/admin/Competitor-Analyzer (confirmed correct — no space in path)
 Resume context:
 - Plan 01-01 is audited and approved — 7 changes applied, safe to APPLY
 - Task 1 first step: CREATE apps/competitor-scraper/package.json (does not exist yet), then npm install
 - All APPLY file operations target apps/competitor-scraper/ subdirectory
 - No application code exists yet — clean slate
 - better-sqlite3 is a native addon — requires Xcode CLT on Mac for npm install
+- Workspace path is now confirmed correct — .git is at Competitor-Analyzer root
 
 ---
 *STATE.md — Updated after every significant action*

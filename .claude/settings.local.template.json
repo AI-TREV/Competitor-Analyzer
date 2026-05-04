@@ -1,0 +1,52 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(claude --version)",
+      "mcp__base-mcp__base_list_projects"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "base-mcp",
+    "lean-ctx"
+  ],
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/active-hook.py\""
+          },
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/backlog-hook.py\""
+          },
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/base-pulse-check.py\""
+          },
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/psmm-injector.py\""
+          },
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/operator.py\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PYTHON_PATH \"WORKSPACE_PATH/.base/hooks/satellite-detection.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

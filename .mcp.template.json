@@ -9,7 +9,7 @@
     },
     "lean-ctx": {
       "type": "stdio",
-      "command": "C:/Users/trevo/.claude/plugins/lean-ctx/packages/lean-ctx-bin/bin/lean-ctx.exe",
+      "command": "LEAN_CTX_BINARY_PATH",
       "args": ["--mcp"]
     }
   }
